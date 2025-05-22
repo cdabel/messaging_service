@@ -98,7 +98,7 @@ curl -X POST http://localhost:8000/messages/send \
 
 - Provider URL is assumed to be a mock endpoint. Retries are implemented using Tenacity, and error responses are handled gracefully.
 - Conversations were mentioned in the prompt but no grouping logic was defined. This was intentionally deferred and noted in the code for follow-up.
-- The database schema is created on startup using `create_tables()` for simplicity in development. We'd use Alembic to productionize a schema migration.git 
+- The database schema is created on startup using `create_tables()` for simplicity in development. Would use Alembic to productionize a schema migration.
 - Environment configuration is loaded via `python-dotenv` using a `.env` file.
 - The application is written with production extensibility in mind, but focused on delivery of core functionality under time constraints.
 
