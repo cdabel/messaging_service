@@ -1,6 +1,6 @@
-# Hatch Messaging Service (Take-Home Project)
+# Messaging Service (API Project)
 
-This project implements a simplified messaging service that mimics key functionality from Hatch’s agentic AI platform for home services communication.
+This project implements a simplified messaging service that mimics key functionality from an agentic AI platform.
 
 It supports:
 
@@ -47,17 +47,17 @@ Refer to `.env.example` if needed.
 sudo service postgresql start
 sudo -u postgres psql
 # Then in psql:
-CREATE USER hatch WITH PASSWORD 'secret';
+CREATE USER <redacted> WITH PASSWORD '<redacted>';
 CREATE DATABASE messaging;
-GRANT ALL PRIVILEGES ON DATABASE messaging TO hatch;
+GRANT ALL PRIVILEGES ON DATABASE messaging TO <redacted>;
 ```
 
 **Option B: Docker**
 
 ```bash
-docker run --name hatch-postgres \
+docker run --name messaging-proj-postgres \
   -e POSTGRES_USER=hatch \
-  -e POSTGRES_PASSWORD=secret \
+  -e POSTGRES_PASSWORD=<redacted> \
   -e POSTGRES_DB=messaging \
   -p 5432:5432 \
   -d postgres:15
@@ -86,7 +86,7 @@ curl -X POST http://localhost:8000/messages/send \
     "from_": "+11234567890",
     "to": "+10987654321",
     "type": "sms",
-    "body": "Test message from Hatch take-home project.",
+    "body": "Test message",
     "attachments": [],
     "timestamp": "2025-05-21T18:00:00Z"
   }'
@@ -98,7 +98,7 @@ curl -X POST http://localhost:8000/messages/send \
 
 - Provider URL is assumed to be a mock endpoint. Retries are implemented using Tenacity, and error responses are handled gracefully.
 - Conversations were mentioned in the prompt but no grouping logic was defined. This was intentionally deferred and noted in the code for follow-up.
-- The database schema is created on startup using `create_tables()` for simplicity in development. We'd use Alembic to productionize a migration.
+- The database schema is created on startup using `create_tables()` for simplicity in development. We'd use Alembic to productionize a schema migration.git 
 - Environment configuration is loaded via `python-dotenv` using a `.env` file.
 - The application is written with production extensibility in mind, but focused on delivery of core functionality under time constraints.
 
